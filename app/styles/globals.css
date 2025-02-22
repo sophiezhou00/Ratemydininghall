@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🌟 Set global background color */
+body {
+        @apply bg-[#C9E6FF] text-gray-900 dark:bg-[#1E3A5F] dark:text-white;
+      }
+      
