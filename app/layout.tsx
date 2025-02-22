@@ -1,4 +1,10 @@
 import "@/app/styles/globals.css"; 
+import { League_Spartan } from 'next/font/google'
+
+const leagueSpartan = League_Spartan({ 
+  subsets: ['latin'],
+  weight: ['400', '500', '700'] // These are the weights we're loading
+})
 
 export const metadata = {
   title: 'Next.js',
