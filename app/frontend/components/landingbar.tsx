@@ -1,12 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSession, signOut } from "next-auth/react";
 import LoginPopup from "@/app/frontend/components/log-in";
 import SignupPopup from "@/app/frontend/components/sign-up";
 import { User } from "lucide-react";
 
 export default function LandingBar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { data: session, status } = useSession(); // Get session & status
+  const isLoggedIn = status === "authenticated";
+
+
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
 
@@ -20,12 +24,22 @@ export default function LandingBar() {
 
           <div className="flex items-center space-x-6">
             {isLoggedIn ? (
-              <a
-                href="/account-page"
-                className="w-14 h-14 flex items-center justify-center bg-yellow-400 rounded-full hover:bg-[#ECC400] transition"
-              >
-                <User className="w-8 h-8 text-white" />
-              </a>
+              <div className="flex items-center space-x-4">
+                <a
+                  href="/account-page"
+                  className="w-14 h-14 flex items-center justify-center bg-yellow-400 rounded-full hover:bg-[#ECC400] transition"
+                >
+                  <User className="w-8 h-8 text-white" /> {/* Profile Icon */}
+                </a>
+                <button
+                  onClick={async () => {
+                    await signOut({ callbackUrl: "/" }); // Ensure session updates
+                  }}
+                  className="bg-[#599CDF] text-white px-4 py-2 rounded-lg"
+                >
+                  Logout
+                </button>
+              </div>
             ) : (
               <button
                 onClick={() => setShowLogin(true)}
@@ -45,7 +59,7 @@ export default function LandingBar() {
             setShowLogin(false);
             setShowSignup(true);
           }} 
-          onLoginSuccess={() => setIsLoggedIn(true)} // Update state on login
+          onLoginSuccess={() => setShowLogin(false)} // Close on success
         />
       )}
 
