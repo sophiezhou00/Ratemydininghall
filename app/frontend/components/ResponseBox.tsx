@@ -1,20 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { ThumbsUp, ThumbsDown } from "lucide-react"; // Using Lucide icons
+import { ThumbsUp, ThumbsDown } from "lucide-react";
 
-export default function ResponseBox({ value, response }: { value: string; response: string }) {
-  // State for likes and dislikes
-  const [likes, setLikes] = useState(0);
+export default function ResponseBox({ value, response, initialLikes }: { value: string; response: string; initialLikes: number }) {
+  // Set the initial likes from props
+  const [likes, setLikes] = useState(initialLikes);
   const [dislikes, setDislikes] = useState(0);
 
-  // Handle Thumbs Up
   const handleThumbsUp = () => {
     setLikes(likes + 1);
     // Future: Save to database
   };
 
-  // Handle Thumbs Down
   const handleThumbsDown = () => {
     setDislikes(dislikes + 1);
     // Future: Save to database
@@ -30,9 +28,7 @@ export default function ResponseBox({ value, response }: { value: string; respon
         </div>
 
         {/* Response Text (Prevents Overflow) */}
-        <p className="pt-2 text-gray-600 flex-grow pr-4">
-          {response}
-        </p>
+        <p className="pt-2 text-gray-600 flex-grow pr-4">{response}</p>
 
         {/* Reserved Space for Photo */}
         <div className="w-[200px] h-[200px] bg-gray-300 flex items-center flex-shrink-0 justify-center">
@@ -43,19 +39,13 @@ export default function ResponseBox({ value, response }: { value: string; respon
       {/* Bottom Section - Like/Dislike Buttons */}
       <div className="flex items-center space-x-6 mt-4">
         {/* Thumbs Up */}
-        <button 
-          onClick={handleThumbsUp} 
-          className="flex items-center space-x-2 text-gray-600 hover:text-green-500 transition"
-        >
+        <button onClick={handleThumbsUp} className="flex items-center space-x-2 text-gray-600 hover:text-green-500 transition">
           <ThumbsUp className="w-6 h-6" />
           <span>{likes}</span>
         </button>
 
         {/* Thumbs Down */}
-        <button 
-          onClick={handleThumbsDown} 
-          className="flex items-center space-x-2 text-gray-600 hover:text-red-500 transition"
-        >
+        <button onClick={handleThumbsDown} className="flex items-center space-x-2 text-gray-600 hover:text-red-500 transition">
           <ThumbsDown className="w-6 h-6" />
           <span>{dislikes}</span>
         </button>

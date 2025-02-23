@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import LoginBox from "@/app/frontend/components/LandingBar";
 import { User } from "lucide-react"; // Import account icon
 
 export default function LandingBar() {
@@ -23,7 +22,7 @@ export default function LandingBar() {
             {isLoggedIn ? (
               // Show Enlarged Account Icon when logged in
               <a
-                href="/account"
+                href="/account-page"
                 className="w-14 h-14 flex items-center justify-center bg-yellow-400 rounded-full hover:bg-[#ECC400] transition"
               >
                 <User className="w-8 h-8 text-white" />

@@ -2,22 +2,22 @@
 import { useEffect, useState } from "react";
 import ButtonBar from "@/app/frontend/components/ButtonBar";
 import ResponseBox from "@/app/frontend/components/ResponseBox";
-import LandingBar from "@/app/frontend/components/LandingBar";
+import LandingBar from "@/app/frontend/components/landingbar";
 
 export default function DewickPage() {
   const [RatingMessage, setRatingMessage] = useState("Loading...");
-  const [responses, setResponses] = useState<{ value: string; response: string }[]>([]);
+  const [responses, setResponses] = useState<{ value: string; response: string; likes: number}[]>([]);
 
   useEffect(() => {
     setTimeout(() => {
       setRatingMessage("3.7");
       // Simulated data fetch (replace with real data from MongoDB in the future)
       setResponses([
-        { value: "3", response: "The food was decent, but could be better." },
-        { value: "4.2", response: "Really enjoyed my meal today!" },
-        { value: "5", response: "Absolutely fantastic! Lorem ipsum dolor sit ametLorem ipsum dolor sit amet" },
-        { value: "2.8", response: "Not great, but edible." },
-        { value: "4.5", response: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum. " },
+        { value: "3", response: "The food was decent, but could be better.", likes: 10 },
+        { value: "4.2", response: "Really enjoyed my meal today!", likes: 10  },
+        { value: "5", response: "Absolutely fantastic! Lorem ipsum dolor sit ametLorem ipsum dolor sit amet" , likes: 10 },
+        { value: "2.8", response: "Not great, but edible.", likes: 10  },
+        { value: "4.5", response: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum." , likes: 10 },
       ]);
     }, 500);
   }, []);
@@ -51,7 +51,7 @@ export default function DewickPage() {
           {/* Scrollable Content */}
           <div className="flex flex-col pl-6 gap-4">
             {responses.map((res, index) => (
-              <ResponseBox key={index} value={res.value} response={res.response} />
+              <ResponseBox key={index} value={res.value} response={res.response} initialLikes={res.likes} />
             ))}
           </div>
         </div>

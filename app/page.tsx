@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import LandingBar from "@/app/frontend/components/LandingBar";
+import LandingBar from "@/app/frontend/components/landingbar";
 
 // Button component to allow dynamic scores
 const DiningHallButton = ({ name, score }: { name: string; score: number }) => {
