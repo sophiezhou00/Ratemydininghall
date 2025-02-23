@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import UploadButton from "../frontend/components/upload-button";
 import TagSection from "../frontend/components/tag-section";
@@ -14,8 +13,8 @@ import LandingBar from "@/app/frontend/components/landingbar";
 
 export default function ReviewPage() {
   const router = useRouter();
-  const { data: session } = useSession(); 
-  const userId = session?.user?.id; 
+  const userId = "67bb0870951b2350115e5aa5";
+
   const [rating, setRating] = useState<number | null>(null);
   const [selectedHall, setSelectedHall] = useState<string | null>(null);
   const [mealPeriod, setMealPeriod] = useState<string | null>(null);
@@ -25,11 +24,6 @@ export default function ReviewPage() {
 
   // Handle review submission
   const handleSubmit = async () => {
-    if (!userId) {
-      console.error("User not logged in");
-      return;
-    }
-
     console.log("Submit button clicked!");
 
     const reviewData = {
@@ -40,7 +34,7 @@ export default function ReviewPage() {
       mealPeriod: mealPeriod || "",
       response: reviewText,
       tags: selectedTags,
-      userId: userId, // ✅ Use the logged-in user's ID
+      userId: userId,
       value: rating !== null ? rating.toString() : "",
       photo: image ? await convertFileToBase64(image) : null,
     };
@@ -58,7 +52,7 @@ export default function ReviewPage() {
 
       if (response.ok) {
         console.log("Review submitted successfully!");
-        router.push("/"); // ✅ Redirect to home page after success
+        router.push("/"); 
       } else {
         console.error("Error submitting review.");
         const errorText = await response.text();
