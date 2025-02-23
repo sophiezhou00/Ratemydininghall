@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+
 import LoginPopup from "@/app/frontend/components/log-in";
 import SignupPopup from "@/app/frontend/components/sign-up";
 import { User } from "lucide-react";
@@ -21,7 +22,7 @@ export default function LandingBar() {
           <div className="flex items-center space-x-6">
             {isLoggedIn ? (
               <a
-                href="/account"
+                href="/account-page"
                 className="w-14 h-14 flex items-center justify-center bg-yellow-400 rounded-full hover:bg-[#ECC400] transition"
               >
                 <User className="w-8 h-8 text-white" />

@@ -7,19 +7,20 @@ import LandingBar from "@/app/frontend/components/landingbar";
 
 export default function DewickPage() {
   const [RatingMessage, setRatingMessage] = useState("Loading...");
-  const [responses, setResponses] = useState<{ value: string; response: string }[]>([]);
+  const [responses, setResponses] = useState<{ value: string; response: string; likes: number; dislikes: number; mealPeriod: string; tags: string[], date: string}[]>([]);
   const router = useRouter(); // Next.js router
-
+  const holdertags = ["Gross", "Weird", "Bland"];
+  
   useEffect(() => {
     setTimeout(() => {
       setRatingMessage("3.7");
       // Simulated data fetch (replace with real data from MongoDB in the future)
       setResponses([
-        { value: "3", response: "The food was decent, but could be better." },
-        { value: "4.2", response: "Really enjoyed my meal today!" },
-        { value: "5", response: "Absolutely fantastic! Lorem ipsum dolor sit ametLorem ipsum dolor sit amet" },
-        { value: "2.8", response: "Not great, but edible." },
-        { value: "4.5", response: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum. " },
+        { value: "1", response: "Worst meal I've had.", likes: 2, dislikes: 20, mealPeriod: "Breakfast", tags: holdertags, date: "2024-02-21T08:15:00.000Z" },
+        { value: "4", response: "Delicious, would eat again!", likes: 40, dislikes: 3, mealPeriod: "Lunch", tags: holdertags, date: "2024-02-21T12:30:00.000Z" },
+        { value: "5", response: "Absolutely amazing!", likes: 50, dislikes: 1, mealPeriod: "Dinner", tags: holdertags, date: "2024-02-21T18:45:00.000Z" },
+        { value: "2", response: "Too salty, but still edible.", likes: 15, dislikes: 10, mealPeriod: "Breakfast", tags: holdertags, date: "2024-02-22T09:00:00.000Z" },
+        { value: "3", response: "Pretty average.", likes: 18, dislikes: 8, mealPeriod: "Lunch", tags: holdertags, date: "2024-02-22T13:20:00.000Z" }
       ]);
     }, 500);
   }, []);
@@ -54,7 +55,7 @@ export default function DewickPage() {
           {/* Scrollable Content */}
           <div className="flex flex-col pl-6 gap-4">
             {responses.map((res, index) => (
-              <ResponseBox key={index} value={res.value} response={res.response} />
+              <ResponseBox key={index} value={res.value} response={res.response} initialLikes={res.likes} initialDislikes={res.dislikes} mealPeriod={res.mealPeriod} tags={res.tags} date={res.date}/>
             ))}
           </div>
         </div>
