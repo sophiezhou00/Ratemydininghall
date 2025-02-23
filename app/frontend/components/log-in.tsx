@@ -1,46 +1,63 @@
 "use client";
 
 import { useState } from "react";
-import { Eye, EyeOff, X } from "lucide-react"; // Import icons
+import { Eye, EyeOff, X } from "lucide-react";
 
 interface LoginPopupProps {
   onClose: () => void;
   onOpenSignUp: () => void;
+  onLoginSuccess: () => void;  // Prop to update login state
 }
 
-const LoginPopup: React.FC<LoginPopupProps> = ({ onClose, onOpenSignUp }) => {
+const LoginPopup: React.FC<LoginPopupProps> = ({ onClose, onOpenSignUp, onLoginSuccess }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Mock login validation
     if (!email || !password) {
       setErrorMessage("Email and password are required.");
       return;
     }
 
     setErrorMessage(null);
-    
-    // Simulate login process (Replace with actual authentication logic)
-    console.log("Logging in with:", { email, password });
-    alert("Login successful!");
-    onClose(); // Close login popup on success
+    setLoading(true);
+
+    try {
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setErrorMessage(data.error || "Login failed");
+      } else {
+        onLoginSuccess(); // Call parent function to update login state
+        onClose(); // Close the login popup
+      }
+    } catch (error) {
+      setErrorMessage("An error occurred. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div
       className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
-      onClick={onClose} // Click outside to close
+      onClick={onClose}
     >
       <div
         className="bg-[#EAF5FF] p-8 rounded-lg shadow-md w-96 relative"
-        onClick={(e) => e.stopPropagation()} // Prevent accidental closure
+        onClick={(e) => e.stopPropagation()}
       >
-        {/* Close Button */}
         <button
           onClick={onClose}
           className="absolute top-2 right-3 text-gray-600 hover:text-gray-900"
@@ -55,7 +72,6 @@ const LoginPopup: React.FC<LoginPopupProps> = ({ onClose, onOpenSignUp }) => {
         {errorMessage && <p className="text-red-500 text-center">{errorMessage}</p>}
 
         <form onSubmit={handleSubmit}>
-          {/* Email Input */}
           <div className="mb-4">
             <input
               type="email"
@@ -67,7 +83,6 @@ const LoginPopup: React.FC<LoginPopupProps> = ({ onClose, onOpenSignUp }) => {
             />
           </div>
 
-          {/* Password Input */}
           <div className="mb-4 relative">
             <input
               type={showPassword ? "text" : "password"}
@@ -86,22 +101,21 @@ const LoginPopup: React.FC<LoginPopupProps> = ({ onClose, onOpenSignUp }) => {
             </button>
           </div>
 
-          {/* Login Button */}
           <button
             type="submit"
             className="w-full bg-[#599CDF] text-white p-3 rounded-lg hover:bg-[#2e7bae] transition"
+            disabled={loading}
           >
-            Login
+            {loading ? "Logging in..." : "Login"}
           </button>
         </form>
 
-        {/* Sign Up Link - Open Sign Up Popup */}
         <p className="text-sm text-gray-500 text-center mt-4">
           Don't have an account?{" "}
           <button
             onClick={() => {
-              onClose(); // Close login popup
-              onOpenSignUp(); // Open signup popup
+              onClose();
+              onOpenSignUp();
             }}
             className="text-[#599CDF] hover:underline"
           >

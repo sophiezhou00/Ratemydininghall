@@ -1,13 +1,12 @@
 "use client";
 
 import { useState } from "react";
-
 import LoginPopup from "@/app/frontend/components/log-in";
 import SignupPopup from "@/app/frontend/components/sign-up";
 import { User } from "lucide-react";
 
 export default function LandingBar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
 
@@ -39,20 +38,25 @@ export default function LandingBar() {
         </div>
       </div>
 
-      {/* Login Popup */}
       {showLogin && (
-        <LoginPopup onClose={() => setShowLogin(false)} onOpenSignUp={() => {
-          setShowLogin(false);
-          setShowSignup(true);
-        }} />
+        <LoginPopup 
+          onClose={() => setShowLogin(false)} 
+          onOpenSignUp={() => {
+            setShowLogin(false);
+            setShowSignup(true);
+          }} 
+          onLoginSuccess={() => setIsLoggedIn(true)} // Update state on login
+        />
       )}
 
-      {/* Signup Popup */}
       {showSignup && (
-        <SignupPopup onClose={() => setShowSignup(false)} onOpenLogin={() => {
-          setShowSignup(false);
-          setShowLogin(true);
-        }} />
+        <SignupPopup 
+          onClose={() => setShowSignup(false)} 
+          onOpenLogin={() => {
+            setShowSignup(false);
+            setShowLogin(true);
+          }} 
+        />
       )}
     </nav>
   );
