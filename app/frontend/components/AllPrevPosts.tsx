@@ -4,23 +4,26 @@ import { useEffect, useState } from "react";
 import ResponseBox from "@/app/frontend/components/ResponseBox";
 
 export default function AllPrevPosts({ sortBy }: { sortBy: "recent" | "liked" }) {
-  const [responses, setResponses] = useState<{ value: string; response: string; likes: number; date: number }[]>([]);
+  const [responses, setResponses] = useState<{ value: string; response: string; likes: number; dislikes: number; mealPeriod: string; tags: string[], date: string }[]>([]);
+  const holdertags = ["Healthy", "Vegetarian", "Spicy"]
 
   useEffect(() => {
     setTimeout(() => {
       setResponses([
-        { value: "3", response: "MID AF, but could be better.", likes: 10, date: 1700000000 },
-        { value: "4", response: "Really enjoyed my meal today! sooo yummy", likes: 25, date: 1700000100 },
-        { value: "5", response: "Peepoo!", likes: 5, date: 1700000200 },
-        { value: "2", response: "Not great, but edible.", likes: 30, date: 1700000300 },
-        { value: "3", response: "Amazing food, best experience yet!", likes: 20, date: 1700000400 },
+          { value: "1", response: "Worst meal I've had.", likes: 2, dislikes: 20, mealPeriod: "Breakfast", tags: holdertags, date: "2024-02-21T08:15:00.000Z" },
+          { value: "4", response: "Delicious, would eat again!", likes: 40, dislikes: 3, mealPeriod: "Lunch", tags: holdertags, date: "2024-02-21T12:30:00.000Z" },
+          { value: "5", response: "Absolutely amazing!", likes: 50, dislikes: 1, mealPeriod: "Dinner", tags: holdertags, date: "2024-02-21T18:45:00.000Z" },
+          { value: "2", response: "Too salty, but still edible.", likes: 15, dislikes: 10, mealPeriod: "Breakfast", tags: holdertags, date: "2024-02-22T09:00:00.000Z" },
+          { value: "3", response: "Pretty average.", likes: 18, dislikes: 8, mealPeriod: "Lunch", tags: holdertags, date: "2024-02-22T13:20:00.000Z" }
       ]);
     });
   }, []);
 
   // Sort responses based on sortBy prop
   const sortedResponses = [...responses].sort((a, b) => {
-    return sortBy === "liked" ? b.likes - a.likes : b.date - a.date;
+    return sortBy === "liked" 
+      ? b.likes - a.likes 
+      : new Date(b.date).getTime() - new Date(a.date).getTime();
   });
 
   const title = sortBy === "liked" ? "Most Liked Posts" : "All Previous Posts";
@@ -31,7 +34,7 @@ export default function AllPrevPosts({ sortBy }: { sortBy: "recent" | "liked" })
       <div className="border-l-4 border-[#599CDF] ml-16 w-full overflow-y pr-4">
         <div className="flex flex-col pl-6 gap-4">
           {sortedResponses.map((res, index) => (
-            <ResponseBox key={index} value={res.value} response={res.response} initialLikes={res.likes} />
+            <ResponseBox key={index} value={res.value} response={res.response} initialLikes={res.likes} initialDislikes={res.dislikes} mealPeriod={res.mealPeriod} tags={res.tags} date={res.date} />
           ))}
         </div>
       </div>
