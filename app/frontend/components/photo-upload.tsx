@@ -5,7 +5,7 @@ import { FaImage } from "react-icons/fa";
 
 
 
-export default function ReviewForm() {
+export default function PhotoUpload() {
   const [file, setFile] = useState<File | null>(null);
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {

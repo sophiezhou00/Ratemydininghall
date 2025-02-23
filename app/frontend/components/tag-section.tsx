@@ -1,25 +1,29 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 
-export default function TagSection() {
+interface TagSectionProps {
+  selectedTags: string[];
+  setSelectedTags: (tags: string[]) => void;
+}
+
+export default function TagSection({ selectedTags, setSelectedTags }: TagSectionProps) {
   const tags = [
     "Good selection", "Bland", "Undercooked", "Overcooked",
     "Fresh", "Delicious", "Too salty", "Too sweet",
     "Spicy", "Greasy", "Must visit", "Long lines"
   ];
 
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
-
+  // Toggle tag selection
   const toggleTag = (tag: string) => {
-    setSelectedTags((prev) =>
-      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
+    setSelectedTags(selectedTags.includes(tag)
+      ? selectedTags.filter((t) => t !== tag)
+      : [...selectedTags, tag]
     );
   };
 
   return (
     <div className="p-6 bg-[#EAF5FF] shadow-md rounded-lg w-full max-w-3xl mx-auto mt-10">
-      {/* Section Title */}
       <h2 className="text-black font-semibold mb-4 text-lg">Select Tags</h2>
 
       {/* Tag Buttons */}
@@ -28,7 +32,8 @@ export default function TagSection() {
           <button
             key={tag}
             onClick={() => toggleTag(tag)}
-            className={`px-4 py-2 rounded-full border-2 transition text-sm font-semibold ${
+            onKeyDown={(e) => e.key === "Enter" && toggleTag(tag)}
+            className={`px-4 py-2 rounded-full border-2 transition text-sm font-semibold focus:outline-none focus:ring-2 ${
               selectedTags.includes(tag)
                 ? "bg-gray-700 text-white border-gray-700"
                 : "bg-gray-200 text-black border-gray-400 hover:bg-gray-300"

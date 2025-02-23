@@ -1,30 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { FaStar } from "react-icons/fa";
 
-export default function RatingSection() {
-  const [rating, setRating] = useState<number | null>(null);
+interface RatingSectionProps {
+  value: number;
+  onChange: (rating: number) => void;
+}
 
-  // Function to handle rating selection
-  const handleRating = async (selectedRating: number) => {
-    setRating(selectedRating);
-    
-    // Simulate sending the rating data to a database
-    try {
-      await fetch("/api/submit-rating", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ rating: selectedRating }),
-      });
-      console.log("Rating submitted:", selectedRating);
-    } catch (error) {
-      console.error("Error submitting rating:", error);
-    }
-  };
-
+export default function RatingSection({ value, onChange }: RatingSectionProps) {
   return (
     <div className="p-6 bg-[#EAF5FF] shadow-md rounded-lg w-full max-w-3xl mx-auto mt-10">
       {/* Section Title */}
@@ -35,9 +19,9 @@ export default function RatingSection() {
         {[1, 2, 3, 4, 5].map((num) => (
           <button
             key={num}
-            onClick={() => handleRating(num)}
+            onClick={() => onChange(num)} // Uses parent function instead of setting local state
             className={`text-5xl ${
-              rating && rating >= num ? "text-yellow-500" : "text-gray-400"
+              value && value >= num ? "text-yellow-500" : "text-gray-400"
             } transition hover:text-yellow-500`}
           >
             <FaStar /> {/* Star icon */}
