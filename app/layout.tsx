@@ -1,8 +1,6 @@
-"use client"
-
 import "@/app/styles/globals.css";
-import { SessionProvider } from "next-auth/react";
-import LandingBar from "@/app/frontend/components/landingbar"; // Ensure correct import
+import LandingBar from "@/app/frontend/components/landingbar";
+import SessionWrapper from "@/app/frontend/components/SessionWrapper";
 
 export default function RootLayout({
   children,
@@ -12,10 +10,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <SessionProvider>
+        <SessionWrapper>
           <LandingBar />
           {children}
-        </SessionProvider>
+        </SessionWrapper>
       </body>
     </html>
   );
