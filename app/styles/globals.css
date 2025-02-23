@@ -2,9 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+
+
+
 /* 🌟 Set global background color */
 body {
         @apply bg-[#C9E6FF] text-gray-900 dark:bg-[#1E3A5F] dark:text-white overflow-x-hidden;
+        font-family: 'League Spartan', sans-serif;
 
       }
       

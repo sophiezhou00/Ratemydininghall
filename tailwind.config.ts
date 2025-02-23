@@ -10,6 +10,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        spartan: ["League Spartan", "sans-serif"],
+      },
       colors: {
         background: "hsl(var(--background))", /* "var(--background)",*/
         foreground: "hsl(var(--foreground))", /*"var(--foreground)",*/

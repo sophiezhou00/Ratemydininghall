@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import ButtonBar from "@/app/frontend/components/ButtonBar";
 import ResponseBox from "@/app/frontend/components/ResponseBox";
+import LandingBar from "@/app/frontend/components/LandingBar";
 
 export default function DewickPage() {
   const [RatingMessage, setRatingMessage] = useState("Loading...");
@@ -16,7 +17,7 @@ export default function DewickPage() {
         { value: "4.2", response: "Really enjoyed my meal today!" },
         { value: "5", response: "Absolutely fantastic! Lorem ipsum dolor sit ametLorem ipsum dolor sit amet" },
         { value: "2.8", response: "Not great, but edible." },
-        { value: "4.5", response: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum. " },
+        { value: "4.5", response: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum.adipiscing elit, id est laborum. " },
       ]);
     }, 500);
   }, []);
@@ -24,10 +25,11 @@ export default function DewickPage() {
   return (
     <main className="relative min-h-screen flex flex-col items-center">
       {/* Container for Text and ButtonBar */}
+      <LandingBar />
       <div className="flex w-full flex-col items-start mt-40">
         {/* Rating Message - Aligned Left */}
         <div className="flex items-center space-x-4 pl-16">
-          <p className="text-5xl font-bold mb-4 pb-8">Dewick</p>
+          <p className="text-5xl font-spartan font-bold mb-4 pb-8">Dewick</p>
           <p className="text-3xl font-bold mb-4 pb-7 pl-4">{RatingMessage}/5</p>
         </div>
 
