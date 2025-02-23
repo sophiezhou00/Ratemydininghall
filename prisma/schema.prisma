@@ -15,13 +15,13 @@ model Response {
   dislikes  Int
   mealPeriod String
   tags      String[]
-  date      DateTime
+  date      DateTime @default(now())
 }
 
 model User {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  username     String
-  email  String
+  username  String
+  email     String
   passwordHash     Int
   likedResponses  String[]
 }
