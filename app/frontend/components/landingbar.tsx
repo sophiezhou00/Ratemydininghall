@@ -8,7 +8,7 @@ import { User } from "lucide-react";
 
 export default function LandingBar() {
   const { data: session, status } = useSession(); // Get session & status
-  const isLoggedIn = status === "authenticated";
+  const isLoggedIn = true;
 
 
   const [showLogin, setShowLogin] = useState(false);
@@ -32,13 +32,15 @@ export default function LandingBar() {
                   <User className="w-8 h-8 text-white" /> {/* Profile Icon */}
                 </a>
                 <button
-                  onClick={async () => {
-                    await signOut({ callbackUrl: "/" }); // Ensure session updates
-                  }}
-                  className="bg-[#599CDF] text-white px-4 py-2 rounded-lg"
+                onClick={async () => {
+                    await signOut({ callbackUrl: "/" });
+                    window.location.reload(); // Force refresh
+                }}
+                className="bg-[#599CDF] text-white px-4 py-2 rounded-lg"
                 >
-                  Logout
+                Logout
                 </button>
+
               </div>
             ) : (
               <button
