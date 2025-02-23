@@ -28,10 +28,19 @@ export default function DewickPage() {
       <LandingBar />
       <div className="flex w-full flex-col items-start mt-40">
         {/* Rating Message - Aligned Left */}
-        <div className="flex items-center space-x-4 pl-16">
-          <p className="text-5xl font-spartan font-bold mb-4 pb-8">Dewick</p>
-          <p className="text-3xl font-bold mb-4 pb-7 pl-4">{RatingMessage}/5</p>
+        <div className="flex justify-between items-center w-full pb-12 px-16">
+          {/* Left Side - Title & Rating (kept together) */}
+          <div className="flex items-center space-x-4">
+            <p className="text-5xl font-spartan font-bold">Dewick</p>
+            <p className="text-3xl font-bold">{RatingMessage}/5</p>
+          </div>
+
+          {/* Right Side - Create Post Button (aligned right) */}
+          <button className="bg-blue-900 text-white font-medium px-6 py-3 rounded-full transition">
+            Create Post
+          </button>
         </div>
+
 
         {/* Button Bar - Automatically aligns under text */}
         <ButtonBar />

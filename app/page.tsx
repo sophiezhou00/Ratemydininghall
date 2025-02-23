@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import LandingBar from "@/app/frontend/components/LandingBar";
 
 // Button component to allow dynamic scores
 const DiningHallButton = ({ name, score }: { name: string; score: number }) => {
@@ -19,8 +20,9 @@ const DiningHallButton = ({ name, score }: { name: string; score: number }) => {
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#C9E6FF] flex flex-col">
+      <LandingBar />
       {/* Logo and "Tufts University" text next to each other */}
-      <div className="flex items-center space-x-4  ml-40  mt-10">
+      <div className="flex items-center space-x-4  ml-40  mt-40">
         <Image src="/images/Elephant.png" width={120} height={100} alt="Tufts Logo" />
         <p className="text-6xl font-bold text-black">Tufts University</p>
       </div>
