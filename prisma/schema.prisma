@@ -20,11 +20,8 @@ model Response {
 
 model User {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  value     String
-  response  String
-  likes     Int
-  dislikes  Int
-  mealPeriod String
-  tags      String[]
-  date      DateTime @default(now())
+  username  String
+  email     String
+  passwordHash     Int
+  likedResponses  String[]
 }
