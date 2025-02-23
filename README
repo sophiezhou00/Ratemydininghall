@@ -1,0 +1,46 @@
+================================================================================
+RATEMYDININGHALL
+================================================================================
+Created by: <Ratemydininghall> (<Jasmine Schaber, Sophie Zhou>)
+Presented at JumboHack 2025 under the General track.
+
+Inspired by ratemyprofessor, ratemydininghall is a website where students can
+rate their meals at their school's dining hall each day! Right now, the website
+is personalized to Tufts students, where they can select Dewick or Carm on the 
+homepage. Each page shows the dining hall's overall average rating, their
+daily rating, and rating per meal period. The page is refreshed every day,
+and students like, dislike, and save other people's posts. Similar to Beli,
+students can make a post with a personal rating, upload images, and write 
+comments. Users can also see their past posts, their top posts, as well as 
+their saved posts.
+
+
+Team Member Contributions:
+    Jasmine Schaber: Co-built the website (frontend, backend, and design)
+    Sophie Zhou: Co-built the website (frontend, backend, and design)
+    Finn Kingsbury: helped with the presentation
+
+ACKNOWLEDGEMENTS
+Thank you to WMCC and A2 Empowerment, our jumbocode groups for giving us a 
+great foundation for our code!! Also thanks to ChatGPT and stackoverflow.
+
+REFLECTION
+We we thinking of what students need on this campus, and we realized a big 
+debate for us is always whether to eat at Carm or Dewick. A common issue is 
+that the menu is often misleading, and once you get to the dining hall, you
+realize the food is actaully horrible and you were gaslighted by the menu.
+Or, even worse, you decide to go to Dewick on a day where Carm has berries.
+So, we thought that it would useful to have a "ratemyprofessor" like website,
+where students can help each other out!
+
+We would definitely like to expand this website to other schools, and include
+more features such as a user leaderboard "dining legend status", and expanding 
+it to kindelvan, hodge, etc. 
+
+This is our first hackathon, and it was just the two of us doing the code, so 
+it was honestly super super challenging. We also just learned web dev this year
+so it was a huge learning curve at the beginning where we tried to set up the
+basics. Also, we basically have no experience doing the backend of any of this
+so yeah.. stressful times :)
+
+We had a teammate drop out.. so yeah! 
