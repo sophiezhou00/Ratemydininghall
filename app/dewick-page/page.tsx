@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import ButtonBar from "@/app/frontend/components/ButtonBar";
 import ResponseBox from "@/app/frontend/components/ResponseBox";
 import LandingBar from "@/app/frontend/components/landingbar";
@@ -7,7 +8,8 @@ import LandingBar from "@/app/frontend/components/landingbar";
 export default function DewickPage() {
   const [RatingMessage, setRatingMessage] = useState("Loading...");
   const [responses, setResponses] = useState<{ value: string; response: string; likes: number}[]>([]);
-
+  const router = useRouter(); // Next.js router
+  
   useEffect(() => {
     setTimeout(() => {
       setRatingMessage("3.7");
@@ -36,11 +38,12 @@ export default function DewickPage() {
           </div>
 
           {/* Right Side - Create Post Button (aligned right) */}
-          <button className="bg-blue-900 text-white font-medium px-6 py-3 rounded-full transition">
+          <button 
+            onClick={() => router.push("/review-page")} 
+            className="bg-blue-900 text-white font-medium px-6 py-3 rounded-full transition">
             Create Post
           </button>
         </div>
-
 
         {/* Button Bar - Automatically aligns under text */}
         <ButtonBar />
