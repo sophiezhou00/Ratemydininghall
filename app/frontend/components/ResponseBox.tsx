@@ -1,20 +1,23 @@
 "use client";
 
-export default function ResponseBox() {
+export default function ResponseBox({ value, response }: { value: string; response: string }) {
   return (
-     <div className="flex justify-between items-center bg-[#599CDF] p-4 w-[1246px] mt-[-20px]">
-      <button className="mx-2 px-4 py-2 text-2xl font-bold text-white rounded-lg hover:bg-blue-700">
-        All
-      </button>
-      <button className="mx-2 px-4 py-2 text-2xl font-bold text-white rounded-lg hover:bg-blue-700">
-        Breakfast
-      </button>
-      <button className="mx-2 px-4 py-2 text-2xl font-bold text-white rounded-lg hover:bg-blue-700">
-        Lunch
-      </button>
-      <button className="mx-2 px-4 py-2 text-2xl font-bold text-white rounded-lg hover:bg-blue-700">
-        Dinner
-      </button>
+    <div className="flex p-10 bg-white shadow-md w-[1300px] h-[300px] items-start justify-between">
+      {/* Fixed-size Value Box */}
+      <div className="flex items-center justify-center w-[60px] h-[60px] bg-gray-200 text-gray-800 text-2xl font-bold shadow-sm mr-4 flex-shrink-0">
+        {value}
+      </div>
+      
+      {/* Response Text (Prevents Overflow) */}
+      <p className="pt-2 text-gray-600 flex-grow pr-4">
+        {response}
+      </p>
+
+      {/* Reserved Space for Photo */}
+      <div className="w-[200px] h-[200px] bg-gray-300 flex items-center flex-shrink-0 justify-center">
+        {/* Placeholder for Image */}
+        <span className="text-gray-500">Photo</span>
+      </div>
     </div>
   );
 }
