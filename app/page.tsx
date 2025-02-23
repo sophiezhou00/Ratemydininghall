@@ -8,8 +8,9 @@ const DiningHallButton = ({ name, score }: { name: string; score: number }) => {
   return (
     <button className="w-[850px] h-32 text-4xl font-bold text-white bg-[#599CDF] rounded-lg shadow-lg hover:bg-blue-800 flex items-center space-x-10">
       {/* Dynamic Score Box */}
-      <div className="w-16 h-16 bg-gray-300 text-black text-2xl flex items-center justify-center ml-10 mr-6">
-        {score}
+      <div className="flex flex-col items-center justify-center w-20 h-20 bg-gray-300 text-black text-2xl ml-10 mr-6 rounded-md">
+        <span className="font-bold">{score}</span>
+        <span className="text-xs text-black">Daily Avg Ranking</span>
       </div>
       <span>{name}</span>
     </button>
