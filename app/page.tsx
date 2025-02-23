@@ -39,7 +39,7 @@ export default function HomePage() {
 
       {/* Two Large Wide Buttons */}
       <div className="flex mt-10 flex-col items-center space-y-10 w-full px-8">
-        <DiningHallButton name="Carmichael" score={4.5} />
+        <DiningHallButton name="Carmichael" score={4.5} onClick={() => router.push("/carmichael-page")} />
         <DiningHallButton name="Dewick" score={3.8} onClick={() => router.push("/dewick-page")} />
       </div>
     </div>
