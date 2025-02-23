@@ -8,19 +8,22 @@ datasource db {
 }
 
 model Response {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  value     String
-  response  String
-  likes     Int
-  dislikes  Int
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  date       DateTime @db.Date
+  diningHall String
+  dislikes   Int
+  likes      Int
   mealPeriod String
-  tags      String[]
-  date      DateTime @default(now())
+  response   String
+  tags       String[]
+  userId     String   @db.ObjectId
+  value      String
 }
 
 model User {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
-  email         String   @unique
-  passwordHash String
-  likedResponses String[] @db.ObjectId 
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  email          String
+  likedResponses String[]
+  passwordHash   String
+  username       String
 }
