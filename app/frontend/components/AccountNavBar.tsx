@@ -9,7 +9,7 @@ export default function AccountNavBar() {
   return (
     <div className="w-full">
       {/* Navbar */}
-      <nav className="flex mt-28 justify-between items-center bg-[#599CDF] p-4 pl-16 pr-16 w-full shadow-md fixed top-0 left-0 z-50">
+      <nav className="flex mt-28 justify-between items-center bg-[#599CDF] p-4 pl-16 pr-16 w-full shadow-md top-0 left-0 z-50">
         <div className="flex space-x-6">
           {["All Posts", "Top Posts", "Liked Posts", "All-Time Stats"].map((tab) => (
             <button
@@ -26,7 +26,7 @@ export default function AccountNavBar() {
       </nav>
 
       {/* Dynamic Subpage Content */}
-      <div className="mt-40 pt-6 pb-6">
+      <div className=" pb-6">
         {selected === "All Posts" && <AllPrevPosts sortBy="recent" />}
         {selected === "Top Posts" && <AllPrevPosts sortBy="liked" />}
         {selected === "Liked Posts" && <LikedPosts />}
