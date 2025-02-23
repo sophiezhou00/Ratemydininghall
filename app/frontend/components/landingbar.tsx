@@ -6,7 +6,7 @@ import SignupPopup from "@/app/frontend/components/sign-up";
 import { User } from "lucide-react";
 
 export default function LandingBar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
 
