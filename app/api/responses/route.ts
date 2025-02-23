@@ -7,7 +7,7 @@ export async function GET() {
     const responses = await prisma.response.findMany(); // No sorting, just fetch all
     return NextResponse.json(responses);
   } catch (error) {
-    console.error("Prisma Fetch Error:", error.message, error);
+    console.error("Prisma Fetch Error:", error);
     return NextResponse.json({ error: "Failed to fetch responses" }, { status: 500 });
   }
 }

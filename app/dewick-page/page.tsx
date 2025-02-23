@@ -9,7 +9,7 @@ export default function DewickPage() {
   const [overallRating, setOverallRating] = useState("Loading...");
   const [todaysRating, setTodaysRating] = useState("Loading...");
   const [responses, setResponses] = useState<
-    { value: string; response: string; likes: number; dislikes: number; mealPeriod: string; tags: string[]; date: string; diningHall: string }[]
+    { value: string; response: string; likes: number; dislikes: number; mealPeriod: string; tags: string[]; date: string; diningHall: string; photo: string;}[]
   >([]);
   const [selectedMeal, setSelectedMeal] = useState("All"); // Track selected meal period
   const router = useRouter();
@@ -122,6 +122,7 @@ export default function DewickPage() {
                     mealPeriod={res.mealPeriod}
                     tags={res.tags}
                     date={res.date}
+                    photo={res.photo}
                   />
                 ))
               ) : (

@@ -18,6 +18,7 @@ model Response {
   tags       String[]
   userId     String   @db.ObjectId
   value      String
+  photo      String?
 }
 
 model User {
